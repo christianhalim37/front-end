@@ -23,6 +23,31 @@ function showTab(n) {
 function nextPrev(n) {
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
+  if (currentTab == 0)
+  {
+    window.localStorage['prianamad'] = document.getElementById('prianamad').value;
+    window.localStorage['prianamab'] = document.getElementById('prianamab').value;
+    window.localStorage['wanitanamad'] = document.getElementById('wanitanamad').value;
+    window.localStorage['wanitanamab'] = document.getElementById('wanitanamab').value;
+  }
+  else if(currentTab == 1)
+  {
+    window.localStorage['zona'] = document.getElementById('zona').value;
+    window.localStorage['tanggalnikah'] = document.getElementById('tanggalnikah').value;
+  }
+  else if(currentTab == 2)
+  {
+    window.localStorage['budget'] = document.getElementById('budget').value;
+    window.localStorage['tamu'] = document.getElementById('tamu').value;
+  }
+  else if(currentTab == 3)
+  {
+    if(document.getElementById('fullradio').checked)
+    window.localStorage['fullhalf'] = "full";
+    else
+    window.localStorage['fullhalf'] = "half";
+  }
+
   // Exit the function if any field in the current tab is invalid:
   if (n == 1 && !validateForm()) return false;
   // Hide the current tab:
@@ -34,6 +59,7 @@ function nextPrev(n) {
     //...the form gets submitted:
     document.getElementById("regForm").submit();
     return false;
+
   }
   // Otherwise, display the correct tab:
   showTab(currentTab);

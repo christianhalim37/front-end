@@ -24,7 +24,8 @@
                 <img src="assets/img/doubleten_logo_header.png" alt="logo" class="logo">
               </div>
               <p class="login-card-description">Sign into your account</p>
-              <form action="#!">
+              <form action="{{ url('registersave') }}" method=post>
+              @csrf
                   <div class="form-group">
                     <label for="name" class="sr-only">Full Name</label>
                     <input type="name" name="name" id="name" class="form-control" placeholder="Full name">
@@ -41,7 +42,7 @@
                     <label for="password" class="sr-only">Re-Type Password</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="Re-type Password">
                   </div>
-                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Register">
+                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Register">
                   <a href="{{route('login')}}" class="text-reset">< Back</a>
                 </form>
             </div>

@@ -41,6 +41,9 @@
                                 <p data-v-1533fc41="" style="width: 516px;height: 30px;">
                                     Ceritakan sedikit tentang Anda dan rencana pernikahan Anda agar kami dapat memberikan rekomendasi vendor dan konten yang lebih baik.
                                 </p>
+                                <form id="regForm" action="{{ url('detailpernikahansave') }}" method=post>
+                                @csrf
+
                                 <!-- One "tab" for each step in the form: -->
                                 <div class="tab">
                                     <div data-v-1533fc41="" class="wd-section__content">
@@ -50,10 +53,10 @@
                                         </div>
                                         <div data-v-1533fc41="" id="my-name" class="wd-section__content__form">
                                             <div data-v-1533fc41="" class="form-input style-1">
-                                                <input data-v-1533fc41="" type="text" placeholder="Nama depan" class="">
+                                                <input data-v-1533fc41="" type="text" placeholder="Nama depan" class="" id="prianamad" name="prianamad">
                                             </div> 
                                             <div data-v-1533fc41="" class="form-input style-1">
-                                                <input data-v-1533fc41="" type="text" placeholder="Nama belakang" class="">
+                                                <input data-v-1533fc41="" type="text" placeholder="Nama belakang" class="" id="prianamab" name="prianamab">
                                             </div> <!---->
                                         </div> 
                                         <div data-v-1533fc41="" class="wd-section__content__header">
@@ -62,10 +65,10 @@
                                         </div>
                                         <div data-v-1533fc41="" id="my-name" class="wd-section__content__form">
                                             <div data-v-1533fc41="" class="form-input style-1">
-                                                <input data-v-1533fc41="" type="text" placeholder="Nama depan" class="">
+                                                <input data-v-1533fc41="" type="text" placeholder="Nama depan" class="" id="wanitanamad" name="wanitanamad">
                                             </div> 
                                             <div data-v-1533fc41="" class="form-input style-1">
-                                                <input data-v-1533fc41="" type="text" placeholder="Nama belakang" class="">
+                                                <input data-v-1533fc41="" type="text" placeholder="Nama belakang" class="" id="wanitanamab" name="wanitanamab">
                                             </div> <!---->
                                         </div>                                     
                                     </div>
@@ -80,9 +83,9 @@
                                             <div data-v-1533fc41="" class="form-input style-1">
                                                 <select class="list-dt" id="zona" name="zona" onchange="loadCity(this.value);">
                                                 <optgroup label="Se-Barlingmascakeb">
-                                                    <option value="australia">Purwokerto</option>
-                                                    <option value="canada">Purbalingga</option>
-                                                    <option value="usa">Cilacap</option>    
+                                                    <option value="Purwokerto">Purwokerto</option>
+                                                    <option value="Purbalingga">Purbalingga</option>
+                                                    <option value="Cilacap">Cilacap</option>    
                                                 </optgroup></select>
                                                 <span id="cekcitycodeempty"></span>
                                             </div>
@@ -93,7 +96,7 @@
                                         </div>
                                         <div data-v-1533fc41="" id="my-name" class="wd-section__content__form">
                                             <div data-v-1533fc41="" class="form-input style-1">
-                                                <input data-v-1533fc41="" type="date" min="today" max="2025-12-31" placeholder="Date" class="">
+                                                <input data-v-1533fc41="" type="date" min="today" max="2025-12-31" placeholder="Date" class="" id="tanggalnikah" name="tanggalnikah">
                                             </div> <!---->
                                         </div>                                     
                                     </div>
@@ -103,25 +106,26 @@
                                         <div data-v-1533fc41="" class="wd-section__content__header">
                                             <img data-v-5dc4c71a="" src="https://alexandra.bridestory.com/image/upload/assets/location-SJfxfK_FQ.png" alt="my-name" title="my-name" class="icon">
                                             <h3 data-v-1533fc41="">Budget pernikahan kami </h3>
-                                        </div>
-                                    
-                                        <div data-v-1533fc41="" id="rangeslider" class="wd-section__content__form">
+                                        </div>        
+                                        <input type="number" value="5000" min="0" max="120000" id="budget" name="budget"/>
+                                       <!-- <div data-v-1533fc41="" id="rangeslider" class="wd-section__content__form">
                                             <div data-v-1533fc41="" class="form-input style-1">
                                                 <div class="budget-slider">
                                                     <span class="range-slider-inner">
-                                                        <input type="range" value="5000" min="0" max="120000" step="500" onchange="fetch()"/>
+                                                        <input type="number" value="5000" min="0" max="120000" step="500" onchange="fetch()"/>
                                                         <span>IDR
                                                             <input type="number" value="5000" min="0" max="120000"/>
                                                         </span>
                                                     </span>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </div> 
+                                        </div> -->
                                         <div data-v-1533fc41="" class="wd-section__content__header">
                                             <img data-v-5dc4c71a="" src="https://alexandra.bridestory.com/image/upload/assets/location-SJfxfK_FQ.png" alt="my-name" title="my-name" class="icon">
                                             <h3 data-v-1533fc41="">Kami akan mengundang tamu </h3>
                                         </div>
-                                        <div data-v-1533fc41="" id="rangeslider" class="wd-section__content__form">
+                                        <input type="number" value="10" min="5" max="1000" id="tamu" name="tamu"/>
+                                       <!-- <div data-v-1533fc41="" id="rangeslider" class="wd-section__content__form">
                                             <div data-v-1533fc41="" class="form-input style-1">
                                                 <div class="invitation-slider">
                                                 <label data-v-1533fc41="" class="range-text">
@@ -135,7 +139,7 @@
                                                 </label>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="tab">
@@ -146,11 +150,11 @@
                                         </div>
                                         <div data-v-1533fc41="" id="my-name" class="wd-section__content__form">
                                             <div data-v-1533fc41="" class="form-input style-1">
-                                                <input data-v-1533fc41="" type="radio" name="durasi" id="fullradio" autocomplete ="off" checked>
+                                                <input data-v-1533fc41="" type="radio" name="durasi" id="fullradio" autocomplete ="off" checked value="full" >
                                                 <label for="fullradio" class="btn-lg btn-primary btn-block">Full Time
                                                 </label>
                                                 <h1>tes</h1>
-                                                <input data-v-1533fc41="" type="radio" name="durasi" id="halfradio" autocomplete ="off">
+                                                <input data-v-1533fc41="" type="radio" name="durasi" id="halfradio" autocomplete ="off" value="half" >
                                                 <label for="halfradio" class="btn-lg btn-primary btn-block">Half Time
                                                    
                                                 </label>
@@ -158,10 +162,7 @@
                                         </div>                                     
                                     </div>
                                 </div>
-                                <div class="tab">Login Info:
-                                    <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-                                    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
-                                </div>
+                            </form>
                                 
                             </div>
                             <!-- Circles which indicates the steps of the form: -->
@@ -177,7 +178,7 @@
                                     <button data-v-1533fc41 class="wd-section__control__button--next" id="nextBtn" onclick="nextPrev(1)">Next</button>
                                 </div>
                             </div>
-                            
+                        
                         </div>
                     </div>
                     <div class="wedding-details__decorator" data-v-03d58c9a>
