@@ -41,8 +41,10 @@ $post=DB::table('users')->where('email',$request->email)->first();
     public function savedetailpernikahan(Request $request)
     {
         $email = session('email');
+        echo "cek email" .$email;
         $datauser = DB::table('users')->where('email',$email)->first();
         $userid=$datauser->id;
+
         $post=new DetailPernikahan;
         $post->namacpp=$request->prianamad." ". $request->prianamab;
         $post->namacpw=$request->wanitanamad." ". $request->wanitanamab;
@@ -57,20 +59,20 @@ $post=DB::table('users')->where('email',$request->email)->first();
         $post->bobot_fasilitas=4;
         $post->user_id=$userid;
         $post->save();
-        app('App\Http\Controllers\TopsisController')->get_linguistik();
+        $this->topsis();
         
         echo "SIMPAN  nama ".$post->namacpp." ".$post->namacpw." ".$request->wedd_location." ".$post->wedd_date." ".$post->durasi_wedd." ".$request->jmlh_undangan."".$request->jmlh_budget;
     }
 
-    public function topsis(Request $request)
+    public function topsis()
     {
-       //app('App\Http\Controllers\TopsisController')->get_linguistik;
-       //app('App\Http\Controllers\TopsisController')->get_normalized;
-       //app('App\Http\Controllers\TopsisController')->get_terbobot;
-       //app('App\Http\Controllers\TopsisController')->get_ideal;
-       //app('App\Http\Controllers\TopsisController')->get_positif_distance;
-       //app('App\Http\Controllers\TopsisController')->get_negatif_distance;
-       //app('App\Http\Controllers\TopsisController')->get_nilai_preferensi;
+       app('App\Http\Controllers\TopsisController')->get_linguistik();
+       app('App\Http\Controllers\TopsisController')->get_normalized();
+       app('App\Http\Controllers\TopsisController')->get_terbobot();
+       app('App\Http\Controllers\TopsisController')->get_ideal();
+       app('App\Http\Controllers\TopsisController')->get_positif_distance();
+       app('App\Http\Controllers\TopsisController')->get_negatif_distance();
+       app('App\Http\Controllers\TopsisController')->get_nilai_preferensi();
     }
 
     public function lihatprofile()

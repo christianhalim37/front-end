@@ -102,7 +102,9 @@
                         </div>  
 						  <!-- /.Content Header (Page header) -->
                         <!-- Visit -->
-                        <form action="https://partner.weddingku.com/register/default.asp" name="frmInput" method="post" onsubmit="return isValid();">
+
+                        <form action="{{ url('registervendor') }}" name="frmInput" method="post" onsubmit="return isValid();">
+						@csrf
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 									<div class="panel">
@@ -138,8 +140,8 @@
 														</div>
 														<div class="col-md-12 col-sm-12 col-xs-12">
 														
-														<input type="text" class="form-control input-lg" name="username" id="username" onblur="checkexemail(this.value);" size="20"><div id="statemail">
-														<input name="emailstat" id="emailstat" type="hidden" value="1"></div>
+														<input type="text" class="form-control input-lg" name="email" id="email" onblur="checkexemail(this.value);" size="20"><div id="statemail">
+														<input name="emailstat" id="emailstat" type="hidden"></div>
 														<i id="emailcek">
 														 </i>
 														 <span id="cekemailempty"></span>
@@ -200,29 +202,7 @@
 														</div>
 													</div>
 												</div>
-												
-												<div class="form-group">
-													<div class="col-md-12 col-sm-12 col-xs-12">
-														<label class="control-label" for="category">Category <span class="required">*</span></label>
-													</div>
-													<div class="col-md-12 col-sm-12 col-xs-12">
-														<select class="form-control input-lg" name="businesscategory" onblur="checkexcategory(this.value);" id="businesscategory">
-															<option value="0">Choose Category</option>
-															<option value="6">Beauty, Spa &amp; Healthcare</option><option value="1">Bridal House &amp; Boutique</option><option value="24">Catering &amp; Sweet Corner</option><option value="17">Dekorasi</option><option value="40">Designer`s House</option><option value="26">Destination Wedding Venue</option><option value="65">Equipment</option><option value="27">Hand Bouquet &amp; Florist</option><option value="73">Hotel Ballroom</option><option value="96">International Make Up</option><option value="7">Jas Pengantin</option><option value="15">Kartu Undangan</option><option value="14">Kue Pengantin</option><option value="95">Little Things</option><option value="10">Live Streaming</option><option value="58">Make Up Artist</option><option value="18">MC-Entertainment</option><option value="99">Photobooth</option><option value="37">Sanggar Busana</option><option value="86">Sound System</option><option value="25">Souvenir &amp; Gift</option><option value="91">Traditional Make Up</option><option value="74">Venue &amp; Restaurant</option><option value="80">Wedding Accessories</option><option value="82">Wedding Car Rental</option><option value="9">Wedding Photographer</option><option value="41">Wedding Planner</option><option value="98">Wedding Shoes</option><option value="30">Wedding Usher</option>
-														</select>
-													<span id="cekcategorynameempty"></span>
-													</div>
-												</div>
-												
-												<div class="form-group">
-													<div class="col-md-12 col-sm-12 col-xs-12">
-														<label class="control-label" for="emailbusiness">Business Email</label>
-													</div>
-													<div class="col-md-12 col-sm-12 col-xs-12">
-													<input type="text" id="emailbusiness" name="emailbusiness" class="form-control input-lg" value="" size="20">
-													<small id="emailHelp" class="text-muted">Your registered company legal entity, i.e. PT XYZ Ltd.</small>
-													</div>
-												</div> 
+
 												<div class="form-group" id="txtaddress">
 													<div class="col-md-12 col-sm-12 col-xs-12">
 														<label class="control-label" for="address">Business Address <span class="required">*</span></label>
@@ -233,15 +213,8 @@
 													 <span id="cekaddressempty"></span>
 													</div>
 												</div>
+
 												<div class="form-group">
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-														<label class="control-label" for="phone">Phone <span class="required">*</span></label>
-														<div>
-															<input type="text" name="phone" id="phone" onblur="checkexphone(this.value);" class="form-control input-lg" size="20">
-															<small id="emailHelp" class="text-muted">Your business contact no, +CountryCode + number, i.e. +62216505350</small><br>
-															<span id="cekphoneempty"></span>
-														</div>
-													</div>
 													<div class="col-md-6 col-sm-6 col-xs-12">
 														<label class="control-label" for="city">City <span class="required">*</span></label>
 														<div>
@@ -256,7 +229,54 @@
 															<span id="cekcitycodeempty"></span>
 														</div>
 													</div>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+														<label class="control-label" for="phone">Phone <span class="required">*</span></label>
+														<div>
+															<input type="text" name="phone" id="phone" onblur="checkexphone(this.value);" class="form-control input-lg" size="20">
+															<small id="emailHelp" class="text-muted">Your business contact no, +CountryCode + number, i.e. +62216505350</small><br>
+															<span id="cekphoneempty"></span>
+														</div>
+													</div>
 												</div>
+
+												<div class="form-group">
+													<div class="col-md-12 col-sm-12 col-xs-12">
+														<label class="control-label" for="deskripsi">Business Deskripsi</label>
+													</div>
+													<div class="col-md-12 col-sm-12 col-xs-12">
+													<input type="text" id="deskripsi" name="deskripsi" class="form-control input-lg" value="" size="20">
+													<small id="emailHelp" class="text-muted">Your registered company legal entity, i.e. PT XYZ Ltd.</small>
+													</div>
+												</div> 
+
+												<div class="form-group">
+													<div class="col-md-12 col-sm-12 col-xs-12">
+														<label class="control-label" for="emailbusiness">Business Email</label>
+													</div>
+													<div class="col-md-12 col-sm-12 col-xs-12">
+													<input type="text" id="emailbusiness" name="emailbusiness" class="form-control input-lg" value="" size="20">
+													<small id="emailHelp" class="text-muted">Your registered company legal entity, i.e. PT XYZ Ltd.</small>
+													</div>
+												</div> 
+
+												
+												<div class="form-group">
+													<div class="col-md-12 col-sm-12 col-xs-12">
+														<label class="control-label" for="category">Category <span class="required">*</span></label>
+													</div>
+													<div class="col-md-12 col-sm-12 col-xs-12">
+														<select class="form-control input-lg" name="businesscategory" onblur="checkexcategory(this.value);" id="businesscategory">
+															@foreach($datakategori as $data)
+															<option value="{{ $data->id_kat_vendor}}">{{ $data->nama_kategori}}</option>
+															@endforeach
+														
+														</select>
+													<span id="cekcategorynameempty"></span>
+													</div>
+												</div>
+												
+												
+												
 												<div class="col-md-12 col-sm-12 col-xs-12">
 												</div>
 												<div class="form-group">

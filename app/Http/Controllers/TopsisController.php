@@ -19,12 +19,12 @@ class TopsisController extends Controller
         $listPaketVendor = PaketVendor::join('detail_paket','paket_vendor.id_paket_vendor','=','detail_paket.paket_vendor_id')
         ->select('paket_vendor.harga','paket_vendor.kapasitas',
         'paket_vendor.durasi','detail_paket.jumlah',
-        'paket_vendor.vendor_id')->get();
+        'paket_vendor.vendor_id', 'id_paket_vendor')->get();
         
         $dataDetailPernikahan = User::join('detail_pernikahan','users.id','=','detail_pernikahan.user_id')
         ->select('detail_pernikahan.jmlh_budget','detail_pernikahan.jmlh_undangan','detail_pernikahan.durasi_wedd',
         'detail_pernikahan.bobot_durasi',
-        'detail_pernikahan.bobot_budget','detail_pernikahan.bobot_kapasitas','detail_pernikahan.bobot_fasilitas')
+        'detail_pernikahan.bobot_budget','detail_pernikahan.bobot_kapasitas','detail_pernikahan.bobot_fasilitas','id_dtl_pernikahan')
         ->where('users.id','5')->first();
         
 
@@ -56,6 +56,7 @@ class TopsisController extends Controller
         //bobot kriteria harga
         foreach ($listPaketVendor as $key) {
             # code...
+            $key->idpernikahan= $dataDetailPernikahan->id_dtl_pernikahan;
             if (($key->harga > (0*$dataDetailPernikahan->jmlh_budget)) and ($key->harga <= (0.2*$dataDetailPernikahan->jmlh_budget))) {
                 # code...
                 $key->l_harga = 1;
@@ -117,7 +118,12 @@ class TopsisController extends Controller
                 $key->l_kapasitas = 6;
             }
         }
-        echo "proses selesai";
+        foreach ($listPaketVendor as $key){
+           echo "paket vendor = " .$key->id_paket_vendor;
+           echo "vendor = " .$key->vendor_id; 
+           echo "<br>";
+           
+        }
         return $listPaketVendor->all();
     }
 
@@ -142,9 +148,21 @@ class TopsisController extends Controller
         //cari normalisasi
         foreach ($listPaketVendor as $key) {
             # code...
+            if($temp_harga==0) 
+            $key->r_harga = 0;
+            else
             $key->r_harga = $key->l_harga/(sqrt($temp_harga));
+            if( $temp_durasi == 0)
+            $key->r_durasi = 0;
+            else
             $key->r_durasi = $key->l_durasi/(sqrt($temp_durasi));
+            if($temp_kapasitas == 0)
+            $key->r_kapasitas = 0;
+            else
             $key->r_kapasitas = $key->l_kapasitas/(sqrt($temp_kapasitas));
+            if($temp_fasilitas == 0)
+            $key->r_fasilitas = 0;
+            else
             $key->r_fasilitas = $key->jumlah/(sqrt($temp_fasilitas));
         }
 
@@ -242,8 +260,20 @@ class TopsisController extends Controller
         $listPaketVendor = $this->get_negatif_distance();
         foreach ($listPaketVendor as $key){
             $key->nilai_preferensi = $key->n_total/($key->p_total+$key->n_total);
-
+            echo "paket vendor = " .$key->id_paket_vendor;
+            echo "vendor = " .$key->vendor_id; 
+            echo "id pernikahan " .$key->idpernikahan;
+            echo "nilai preferensi" . $key->nilai_preferensi;
+            echo "<br>";
+            $post=new Rekomendasi;
+            $post->dtl_pernikahan_id=$key->idpernikahan;
+            $post->paket_vendor_id=$key->id_paket_vendor;
+            $post->save();
         }
+        
         return $listPaketVendor;
+        
     }
+
+    
 }

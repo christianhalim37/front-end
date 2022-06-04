@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginkuController;
-
+use App\Http\Controllers\VendorkuController;
 use App\Http\Controllers\TopsisController;
 
 Route::get('/', function () {
@@ -29,14 +29,17 @@ Route::get('/login',function(){
 Route::post('/logincek',[LoginkuController::class,'ceklogin']);
 Route::get('/tes',[TopsisController::class,'get_linguistik']);
 Route::post('/registersave',[LoginkuController::class,'saveuser']);
+Route::post('/registervendor',[VendorkuController::class,'savevendor']);
 Route::post('/detailpernikahansave',[LoginkuController::class,'savedetailpernikahan']);
 Route::get('/profileuser',[LoginkuController::class,'lihatprofile'])->name("profileuser");
+Route::get('/registervendor',[VendorkuController::class,'lihatkategori'])->name("vendorkategori");
+
 
 Route::get('/register',function(){
     return view('register');
 })->name('register');
 
-Route::get('/registervendor',function(){
+Route::get('/registervendor2',function(){
     return view('registervendor');
 })->name('registervendor');
 
