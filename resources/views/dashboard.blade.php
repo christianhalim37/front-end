@@ -168,7 +168,7 @@
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end= "{count($vendor)}" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end= "{count($countvendor -> id_vendor)}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Vendors</p>
             
           </div>

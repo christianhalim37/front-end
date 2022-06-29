@@ -29,18 +29,18 @@
                   <li><a href="#">Deep Drop Down 5</a></li>
                 </ul> 
               </li> -->
-              <li><a href="{{route('registervendor')}}">Register Vendor</a></li>
-              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="{{url('/registervendor')}}">Register Vendor</a></li>
+              <li><a href="{{url('/vendor')}}">Edit Vendor</a></li>
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
           @if(session('email'))
           <li class="nav-link scrollto">
-            <a href="{{route('profileuser')}}">{{ session('namauser') }}</a>
+            <a href="{{url('/profileuser')}}">{{ session('namauser') }}</a>
           </li>
           @else
           <li class="nav-link scrollto">
-            <a href="{{route('login')}}">Login</a>
+            <a href="{{url('/login')}}">Login</a>
           </li>
           @endif
         </ul>

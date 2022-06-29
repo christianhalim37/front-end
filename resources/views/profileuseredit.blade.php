@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Profile User</title>
+  <title>Edit Profile User</title>
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -23,25 +23,31 @@
               <div class="brand-wrapper">
                 <img src="assets/img/doubleten_logo_header.png" alt="logo" class="logo">
               </div>
-              <p class="login-card-description">Profile User</p>
-              <div class="form-group">
-                    <label for="email" >Nama</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Email address" value="{{ $datauser->name }}" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label for="email" class="sr-only">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{ $datauser->email }}" readonly>
-                  </div>
-                  <a href="{{ url('/profileuseredit') }}" class="btn btn-red login-btn mb-4">Edit Profile</a>
-                  <a href="{{ url('/logout') }}" class="btn btn-red login-btn mb-4">Logout</a>
-                  <a href="{{ url('/') }}" class="btn  login-btn mb-4">Kembali ke menu</a>
+              <form action="{{ url('/profileuseredit') }}" name="frmInput" method="post" onsubmit="return isValid();">
+						@csrf
+                <p class="login-card-description">Edit Profile User</p>
+                @foreach($datauser as $data)
+                    <input type="hidden" name="id" value="{{ $data->id }}">
+                    <div class="form-group">
+                            <label for="email" >Nama</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Email address" value="{{ $datauser->name }}" >
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{ $datauser->email }}" >
+                        </div>
+                        <input type="hidden" value="doSubmit" name="action">
+                        <input type="submit" id="btnNext" class="btn btn-red login-btn mb-4" value="Save">
+                        <a href="{{ url('/profileuser') }}" class="btn  login-btn mb-4">Cancel</a>
 
-                <!--
-                <nav class="login-card-footer-nav">
-                  <a href="#!">Terms of use.</a>
-                  <a href="#!">Privacy policy</a>
-                </nav>-->
-            </div>
+                        <!--
+                        <nav class="login-card-footer-nav">
+                        <a href="#!">Terms of use.</a>
+                        <a href="#!">Privacy policy</a>
+                        </nav>-->
+                    </div>
+                @endforeach
+            </form>
           </div>
         </div>
       </div>

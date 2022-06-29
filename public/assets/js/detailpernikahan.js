@@ -228,7 +228,7 @@ function fetch() {
 
 }
 
-function fetch() {
+function fetchBudget() {
 
   var parent = document.querySelector(".budget-slider");
   if(!parent) return;

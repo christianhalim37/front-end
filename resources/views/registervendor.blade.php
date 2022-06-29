@@ -219,12 +219,17 @@
 														<label class="control-label" for="city">City <span class="required">*</span></label>
 														<div>
 														
-                                                            <select class="form-control input-lg" id="zona" name="zona" onchange="loadCity(this.value);">
+                                                        <select class="form-control input-lg" id="zona" name="zona" onchange="loadCity(this.value);">
                                                                     
-                                                                    <optgroup label="Barlingmascakeb">
-                                                                <option value="1">Purwokerto</option><option value="4">Banyumas</option><option value="16">Purbalingga</option><option value="21">Cilacap</option><option value="5">Banjarnegara</option>
+                                                            <optgroup label="Barlingmascakeb">
+                                                                <option value="Purwokerto">Purwokerto</option>
+																<option value="Banyumas">Banyumas</option>
+																<option value="Purbalingga">Purbalingga</option>
+																<option value="Cilacap">Cilacap</option>
+																<option value="Banjarnegara">Banjarnegara</option>
                                                                     
-                                                            </optgroup></select>
+                                                            </optgroup>
+														</select>
 															
 															<span id="cekcitycodeempty"></span>
 														</div>
@@ -266,10 +271,9 @@
 													</div>
 													<div class="col-md-12 col-sm-12 col-xs-12">
 														<select class="form-control input-lg" name="businesscategory" onblur="checkexcategory(this.value);" id="businesscategory">
-															@foreach($datakategori as $data)
+														@foreach($datakategori as $data)
 															<option value="{{ $data->id_kat_vendor}}">{{ $data->nama_kategori}}</option>
-															@endforeach
-														
+														@endforeach
 														</select>
 													<span id="cekcategorynameempty"></span>
 													</div>
@@ -287,8 +291,8 @@
 												<div class="form-group">
 												  <div class="col-md-12 col-sm-12 col-xs-12">
 													<input type="hidden" value="doSubmit" name="action">
-													<input type="submit" id="btnNext" class="btn btn-primary pull-right" value="Next">
-													
+													<input type="submit" id="btnNext" class="btn btn-primary pull-right" value="Submit">
+													<a href="{{ url('/') }}" class="btn btn-primary pull-right">Batal</a>
 												  </div>
 												</div>
 											</div>
@@ -303,7 +307,7 @@
             <footer class="main-footer" style="">
     <div class="container">
         <!--div class="pull-right hidden-xs"> <b>Version</b> </div-->
-        <strong>Copyright © 2021 <a href="https://www.weddingku.com" target="_blank">Weddingku</a>.</strong> All rights reserved. <i class="fa fa-heart color-green"></i>
+        <strong> <a href="https://www.weddingku.com" target="_blank">doubleten Wedding Organizer</a>.</strong> <i class="fa fa-heart color-green"></i>
     </div>
 </footer> 
 <script src="https://assets2.weddingku.com/libs/jquery/jquery.min.js" type="text/javascript"></script>

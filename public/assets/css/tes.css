@@ -2337,9 +2337,9 @@ nav.bootsnav .megamenu-content .title {
         margin-bottom: 5px;
     }
 }
+*/
 
-
-/*--- checkbox ---
+/*--- checkbox --- */
 
 .checkbox {
     padding-left: 20px;
@@ -2352,7 +2352,7 @@ nav.bootsnav .megamenu-content .title {
 }
 
 .checkbox label::before {
-    /*content: "";*
+    content: "";
 	content:initial;
     display: inline-block;
     position: absolute;
@@ -2588,7 +2588,7 @@ nav.bootsnav .megamenu-content .title {
 .radio-success input[type="radio"]:checked + label::after {
     background-color: #5cb85c;
 }
-*/
+
 .form-check-label {
     cursor: pointer;
     font-weight: 600;

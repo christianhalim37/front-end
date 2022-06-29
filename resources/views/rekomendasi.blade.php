@@ -35,7 +35,7 @@
             <div id="__layout">
                 <div class="wedding-details" data-v-03d58c9a>
                     <div class="wedding-details__content" data-v-03d58c9a>
-                        <div data-v-1533fc41="" data-v-03d58c9a="" class="wd-section">
+                        <div data-v-1533fc41 data-v-03d58c9a class="wd-section">
                             <div data-v-1533fc41="" class="wd-section__container">
                                 <h2 data-v-1533fc41="">Detail Pernikahan</h2>
                                 <p data-v-1533fc41="" style="width: 516px;height: 30px;">
@@ -84,8 +84,10 @@
                                                 <select class="list-dt" id="zona" name="zona" onchange="loadCity(this.value);">
                                                 <optgroup label="Se-Barlingmascakeb">
                                                     <option value="Purwokerto">Purwokerto</option>
+                                                    <option value="Banyumas">Banyumas</option>
                                                     <option value="Purbalingga">Purbalingga</option>
-                                                    <option value="Cilacap">Cilacap</option>    
+                                                    <option value="Cilacap">Cilacap</option>
+                                                    <option value="Banjarnegara">Banjarnegara</option>   
                                                 </optgroup></select>
                                                 <span id="cekcitycodeempty"></span>
                                             </div>
@@ -106,13 +108,29 @@
                                         <div data-v-1533fc41="" class="wd-section__content__header">
                                             <img data-v-5dc4c71a="" src="https://alexandra.bridestory.com/image/upload/assets/location-SJfxfK_FQ.png" alt="my-name" title="my-name" class="icon">
                                             <h3 data-v-1533fc41="">Budget pernikahan kami </h3>
-                                        </div>        
-                                        <input type="number" value="5000" min="0" max="120000" id="budget" name="budget"/>
-                                       <!-- <div data-v-1533fc41="" id="rangeslider" class="wd-section__content__form">
+                                        </div> 
+                                        <!--
+                                        <div data-v-1533fc41="" id="rangeslider" class="wd-section__content__form">
+                                            <div data-v-1533fc41="" class="form-input style-1">
+                                                <div class="budget-slider">
+                                                <label data-v-1533fc41="" class="range-text">
+                                                    <span class="range-slider rail">
+                                                        <input type="range"  value="500000" min="500000" max="1000000000" step="500" onchange="fetchBudget()"/>
+                                                    </span>
+                                                    <input type="number" value="500000" min="500000" max="1000000000" id="budget" name="budget"/>
+                                                    <span data-v-1533fc41>IDR
+                                                    </span>
+                                                    
+                                                </label>
+                                                </div>
+                                            </div>
+                                        </div>      --> 
+                                        <input type="number" value="5000" min="0" max="120000" id="budget" name="budget"/> 
+                                       <!--
+                                        <div data-v-1533fc41="" id="rangeslider" class="wd-section__content__form">
                                             <div data-v-1533fc41="" class="form-input style-1">
                                                 <div class="budget-slider">
                                                     <span class="range-slider-inner">
-                                                        <input type="number" value="5000" min="0" max="120000" step="500" onchange="fetch()"/>
                                                         <span>IDR
                                                             <input type="number" value="5000" min="0" max="120000"/>
                                                         </span>
@@ -125,14 +143,15 @@
                                             <h3 data-v-1533fc41="">Kami akan mengundang tamu </h3>
                                         </div>
                                         <input type="number" value="10" min="5" max="1000" id="tamu" name="tamu"/>
-                                       <!-- <div data-v-1533fc41="" id="rangeslider" class="wd-section__content__form">
+                                        <!--
+                                        <div data-v-1533fc41="" id="rangeslider" class="wd-section__content__form">
                                             <div data-v-1533fc41="" class="form-input style-1">
                                                 <div class="invitation-slider">
                                                 <label data-v-1533fc41="" class="range-text">
                                                     <span class="range-slider rail">
                                                         <input type="range"  value="10" min="5" max="1000" step="5" onchange="fetchTamu()"/>
                                                     </span>
-                                                    <input type="number" value="10" min="5" max="1000"/>
+                                                    <input type="number" value="10" min="5" max="1000" id="tamu" name="tamu"/>
                                                     <span data-v-1533fc41>Tamu
                                                     </span>
                                                     
@@ -146,27 +165,110 @@
                                     <div data-v-1533fc41="" class="wd-section__content">
                                         <div data-v-1533fc41="" class="wd-section__content__header">
                                             <img data-v-5dc4c71a="" src="https://alexandra.bridestory.com/image/upload/assets/location-SJfxfK_FQ.png" alt="my-name" title="my-name" class="icon">
-                                            <h3 data-v-1533fc41="">Acara pernikahan kami </h3>
+                                            <h3 data-v-1533fc41="">Durasi acara pernikahan kami </h3>
                                         </div>
                                         <div data-v-1533fc41="" id="my-name" class="wd-section__content__form">
                                             <div data-v-1533fc41="" class="form-input style-1">
-                                                <input data-v-1533fc41="" type="radio" name="durasi" id="fullradio" autocomplete ="off" checked value="full" >
-                                                <label for="fullradio" class="btn-lg btn-primary btn-block">Full Time
+                                                <input data-v-1533fc41="" type="radio" name="durasi" id="fullradio" autocomplete ="off" value="Full Day" >
+                                                <label for="fullradio" class="btn-lg btn-primary btn-block">Full Day
                                                 </label>
-                                                <h1>tes</h1>
-                                                <input data-v-1533fc41="" type="radio" name="durasi" id="halfradio" autocomplete ="off" value="half" >
-                                                <label for="halfradio" class="btn-lg btn-primary btn-block">Half Time
-                                                   
+                                                <p data-v-1533fc41="" style="width: 320px;height: 50px; text-align:justify;">
+                                                Full Day : Satu acara penuh mulai dari pemberkatan atau akad sampai dengan resepsi pernikahan
+                                                </p>
+                                                <input data-v-1533fc41="" type="radio" name="durasi" id="halfradio" autocomplete ="off" value="Half Day" >
+                                                <label for="halfradio" class="btn-lg btn-primary btn-block">Half Day
                                                 </label>
+                                                <p data-v-1533fc41="" style="width: 320px;height: 50px; text-align:justify;">
+                                                Half Day : Hanya untuk satu acara tertentu. Seperti : Blessing / Akad / Resepsi
+                                                </p>
                                             </div> <!---->
                                         </div>                                     
                                     </div>
                                 </div>
+                                
+                                <div class="tab">
+                                    <div data-v-1533fc41="" class="wd-section__content">
+                                        <div data-v-1533fc41="" class="wd-section__content__header">
+                                            <img data-v-5dc4c71a="" src="https://alexandra.bridestory.com/image/upload/assets/location-SJfxfK_FQ.png" alt="my-name" title="my-name" class="icon">
+                                            <h3 data-v-1533fc41="">Seberapa Penting Waktu Durasi Pernikahan Kalian?</h3>
+                                        </div>
+                                        <div data-v-1533fc41="" id="my-name" class="wd-section__content__form">
+                                            <div data-v-1533fc41="" class="form-input style-1">
+                                                <select class="list-dt" id="bobot_durasi" name="bobot_durasi" onchange="loadCity(this.value);">
+                                                <optgroup label="Budget">
+                                                    <option value=1>Tidak Penting</option>
+                                                    <option value=2>Kurang Penting</option>
+                                                    <option value=3>Cukup Penting</option> 
+                                                    <option value=4>Penting</option>
+                                                    <option value=5>Sangat Penting</option>
+                                                </optgroup></select>
+                                                <span id="cekcitycodeempty"></span>
+                                            </div>
+                                        </div> 
+                                        <div data-v-1533fc41="" class="wd-section__content__header">
+                                            <img data-v-5dc4c71a="" src="https://alexandra.bridestory.com/image/upload/assets/location-SJfxfK_FQ.png" alt="my-name" title="my-name" class="icon">
+                                            <h3 data-v-1533fc41="">Seberapa Penting Jumlah Tamu Yang Akan Diundang Dalam Pernikahan?</h3>
+                                        </div>
+                                        <div data-v-1533fc41="" id="my-name" class="wd-section__content__form">
+                                            <div data-v-1533fc41="" class="form-input style-1">
+                                                <select class="list-dt" id="bobot_kapasitas" name="bobot_kapasitas" onchange="loadCity(this.value);">
+                                                <optgroup label="Jumlah Undangan">
+                                                    <option value=1>Tidak Penting</option>
+                                                    <option value=2>Kurang Penting</option>
+                                                    <option value=3>Cukup Penting</option> 
+                                                    <option value=4>Penting</option>
+                                                    <option value=5>Sangat Penting</option>
+                                                </optgroup></select>
+                                                <span id="cekcitycodeempty"></span>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div> 
+                                <div class="tab">
+                                    <div data-v-1533fc41="" class="wd-section__content">
+                                        <div data-v-1533fc41="" class="wd-section__content__header">
+                                            <img data-v-5dc4c71a="" src="https://alexandra.bridestory.com/image/upload/assets/location-SJfxfK_FQ.png" alt="my-name" title="my-name" class="icon">
+                                            <h3 data-v-1533fc41="">Seberapa Penting Budget Mempengaruhi Pernikahan?</h3>
+                                        </div>
+                                        <div data-v-1533fc41="" id="my-name" class="wd-section__content__form">
+                                            <div data-v-1533fc41="" class="form-input style-1">
+                                                <select class="list-dt" id="bobot_budget" name="bobot_budget" onchange="loadCity(this.value);">
+                                                <optgroup label="Budget">
+                                                    <option value=1>Tidak Penting</option>
+                                                    <option value=2>Kurang Penting</option>
+                                                    <option value=3>Cukup Penting</option> 
+                                                    <option value=4>Penting</option>
+                                                    <option value=5>Sangat Penting</option>
+                                                </optgroup></select>
+                                                <span id="cekcitycodeempty"></span>
+                                            </div>
+                                        </div> 
+                                        <div data-v-1533fc41="" class="wd-section__content__header">
+                                            <img data-v-5dc4c71a="" src="https://alexandra.bridestory.com/image/upload/assets/location-SJfxfK_FQ.png" alt="my-name" title="my-name" class="icon">
+                                            <h3 data-v-1533fc41="">Seberapa Penting Fasilitas Yang Didapat Dari Vendor?</h3>
+                                        </div>
+                                        <div data-v-1533fc41="" id="my-name" class="wd-section__content__form">
+                                            <div data-v-1533fc41="" class="form-input style-1">
+                                                <select class="list-dt" id="bobot_fasilitas" name="bobot_fasilitas" onchange="loadCity(this.value);">
+                                                <optgroup label="Jumlah Undangan">
+                                                    <option value=1>Tidak Penting</option>
+                                                    <option value=2>Kurang Penting</option>
+                                                    <option value=3>Cukup Penting</option> 
+                                                    <option value=4>Penting</option>
+                                                    <option value=5>Sangat Penting</option>
+                                                </optgroup></select>
+                                                <span id="cekcitycodeempty"></span>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div> 
                             </form>
                                 
                             </div>
                             <!-- Circles which indicates the steps of the form: -->
                             <div style="text-align:center;margin-top:40px;">
+                                <span class="step"></span>
+                                <span class="step"></span>
                                 <span class="step"></span>
                                 <span class="step"></span>
                                 <span class="step"></span>

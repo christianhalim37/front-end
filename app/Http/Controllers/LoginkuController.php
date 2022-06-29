@@ -16,7 +16,7 @@ class LoginkuController extends Controller
     {
 //        $post=User::where("email",$request->email)->get();
 //        echo "email $request->email ";
-$post=DB::table('users')->where('email',$request->email)->first();
+        $post=DB::table('users')->where('email',$request->email)->first();
         if ($post!=null && Hash::check($request->password,$post->password))
         {
             session(['email' => $post->email]);
@@ -34,8 +34,18 @@ $post=DB::table('users')->where('email',$request->email)->first();
         $post->password=Hash::make($request->password);
         $post->role_id=1;
         $post->save();
+        return redirect('/login');
         
         echo "SIMPAN USER nama ".$post->name." email ".$post->email." pass ".$request->password;
+    }
+
+    public function updateuser(Request $request)
+    {
+        $datauser = DB::table('users')->where('id',$request->id)->update();
+        $post->name=$request->name;
+        $post->email=$request->email;
+        $post->save();
+        return redirect('/profileuser');
     }
 
     public function savedetailpernikahan(Request $request)
@@ -51,17 +61,17 @@ $post=DB::table('users')->where('email',$request->email)->first();
         $post->wedd_location=$request->zona;
         $post->wedd_date=$request->tanggalnikah;
         $post->durasi_wedd=$request->durasi;
-        $post->jmlh_undangan=$request->budget;
-        $post->jmlh_budget=$request->tamu;
-        $post->bobot_durasi=1;
-        $post->bobot_kapasitas=2;
-        $post->bobot_budget=3;
-        $post->bobot_fasilitas=4;
+        $post->jmlh_undangan=$request->tamu;
+        $post->jmlh_budget=$request->budget;
+        $post->bobot_durasi=$request->bobot_durasi;
+        $post->bobot_kapasitas=$request->bobot_kapasitas;
+        $post->bobot_budget=$request->bobot_budget;
+        $post->bobot_fasilitas=$request->bobot_fasilitas;
         $post->user_id=$userid;
         $post->save();
         $this->topsis();
         
-        echo "SIMPAN  nama ".$post->namacpp." ".$post->namacpw." ".$request->wedd_location." ".$post->wedd_date." ".$post->durasi_wedd." ".$request->jmlh_undangan."".$request->jmlh_budget;
+        echo "SIMPAN  nama ".$post->namacpp." ".$post->namacpw." ".$request->wedd_location." ".$post->wedd_date." ".$post->durasi_wedd." ".$request->jmlh_undangan."".$request->jmlh_budget." ".$request->bobot_durasi." ".$request->bobot_kapasitas." ".$request->bobot_budget." ".$request->bobot_fasilitas;
     }
 
     public function topsis()
@@ -80,6 +90,12 @@ $post=DB::table('users')->where('email',$request->email)->first();
         $email = session('email');
         $post['datauser']=DB::table('users')->where('email',$email)->first();
         return view('profileuser',$post);
+    }
+
+    public function editprofile()
+    {
+        $post['datauser']=DB::table('users')->where('id',$id)->get();
+        return view('profileuseredit',$post);
     }
 
 }

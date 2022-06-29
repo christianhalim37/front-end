@@ -32,20 +32,36 @@ Route::post('/registersave',[LoginkuController::class,'saveuser']);
 Route::post('/registervendor',[VendorkuController::class,'savevendor']);
 Route::post('/detailpernikahansave',[LoginkuController::class,'savedetailpernikahan']);
 Route::get('/profileuser',[LoginkuController::class,'lihatprofile'])->name("profileuser");
+Route::get('/profileuseredit',[LoginkuController::class,'editprofile'])->name("profileuseredit");
 Route::get('/registervendor',[VendorkuController::class,'lihatkategori'])->name("vendorkategori");
+Route::get('/viewvendor2',[VendorkuController::class,'viewpaket'])->name("viewtablepaket");
+Route::get('/viewdetailpaket',[VendorkuController::class,'viewdetail'])->name("viewtabledetail");
 
+Route::post('/registerpaketvendor',[VendorkuController::class,'savepaketvendor']);
+Route::post('/detailpaketvendor',[VendorkuController::class,'savedetailpaketvendor']);
+Route::post('/profileuseredit',[LoginkuController::class,'updateuser']);
 
 Route::get('/register',function(){
     return view('register');
 })->name('register');
 
-Route::get('/registervendor2',function(){
-    return view('registervendor');
-})->name('registervendor');
+
+Route::get('/editvendor',function(){
+    return view('editvendor');
+})->name('editvendor');
 
 Route::get('/rekomendasi',function(){
     return view('rekomendasi');
 })->name('rekomendasi');
+
+Route::get('/vendor',function(){
+    return view('vendor');
+})->name('vendor');
+
+Route::get('/detailpaket',function(){
+    return view('detailpaket');
+})->name('detailpaket');
+
 
 
 Route::get('/category',function(){
