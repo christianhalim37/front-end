@@ -5,7 +5,7 @@
 
 <div id="page-content-wrapper">
     <div class="container-fluid">
-        <form action="{{ url('registerpaketvendor') }}" name="frmInput" method="post" onsubmit="return isValid();">
+        <form action="{{ url('') }}" name="frmInput" method="post" onsubmit="return isValid();">
         @csrf
         <div class="row">
         <div class="d-flex justify-content-center">
@@ -27,7 +27,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                 <ul class="sddm">
                                         <li>
-                                            <input type="text" name="brand" id="brand" class="form-control-vendor input-lg" onblur="checkexbrand(this.value);" value="" maxlength="100" onkeyup="loadCari(this.value)" autocomplete="OFF" size="20" required=""><input id="partnerid" name="partnerid" type="hidden"><input name="txtCek" type="hidden" value="0">
+                                            <input type="text" name="brand" id="brand" class="form-control-vendor input-lg" onblur="checkexbrand(this.value);" value="{{ $datavendor->nama_vendor }}" maxlength="100" onkeyup="loadCari(this.value)" autocomplete="OFF" size="20" required=""><input id="partnerid" name="partnerid" type="hidden"><input name="txtCek" type="hidden">
                                             <small id="emailHelp" class="text-muted">Your brand, i.e. QR Wedding Expert, will be cross-checked with existing data filtered by city.</small>
                                             <div id="statbrand">
                                                 <input name="brandstat" id="brandstat" type="hidden" value="1">
@@ -46,7 +46,7 @@
                                     <label class="control-label" for="address">Business Address <span class="required">*</span></label>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                <textarea type="text" id="address" name="address" class="form-control-vendor input-lg" rows="1" onblur="checkexaddress(this.value);" cols="20"></textarea>
+                                <textarea type="text" id="address" name="address" class="form-control-vendor input-lg" rows="1" onblur="checkexaddress(this.value);" cols="20">{{ $datavendor->alamat }}</textarea>
                                     <small id="emailHelp" class="text-muted">Your outlet address, i.e. ABC street No. 123</small><br>
                                     <span id="cekaddressempty"></span>
                                 </div>
@@ -57,7 +57,7 @@
                                     <label class="control-label" for="city">City <span class="required">*</span></label>
                                     <div>
                                     
-                                    <select class="form-control-vendor input-lg" id="zona" name="zona" onchange="loadCity(this.value);">
+                                    <select class="form-control-vendor input-lg" id="zona" name="zona" value="{{ $datavendor->kota }}">
                                                 
                                         <optgroup label="Barlingmascakeb">
                                             <option value="Purwokerto">Purwokerto</option>
@@ -75,7 +75,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="phone">Phone <span class="required">*</span></label>
                                     <div>
-                                        <input type="text" name="phone" id="phone" onblur="checkexphone(this.value);" class="form-control-vendor input-lg" size="20">
+                                        <input type="text" name="phone" id="phone" onblur="checkexphone(this.value);" class="form-control-vendor input-lg" size="20" value="{{ $datavendor->no_telp }}">
                                         <small id="emailHelp" class="text-muted">Your business contact no, +CountryCode + number, i.e. +62216505350</small><br>
                                         <span id="cekphoneempty"></span>
                                     </div>
@@ -87,7 +87,7 @@
                                     <label class="control-label" for="deskripsi">Business Deskripsi</label>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input type="text" id="deskripsi" name="deskripsi" class="form-control-vendor input-lg" value="" size="20">
+                                <input type="text" id="deskripsi" name="deskripsi" class="form-control-vendor input-lg" value="{{ $datavendor->deskripsi }}" size="20">
                                 <small id="emailHelp" class="text-muted">Your registered company legal entity, i.e. PT XYZ Ltd.</small>
                                 </div>
                             </div> 
@@ -97,7 +97,7 @@
                                     <label class="control-label" for="emailbusiness">Business Email</label>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input type="text" id="emailbusiness" name="emailbusiness" class="form-control-vendor input-lg" value="" size="20">
+                                <input type="text" id="emailbusiness" name="emailbusiness" class="form-control-vendor input-lg" value="{{ $datavendor->email_vendor }}" size="20">
                                 <small id="emailHelp" class="text-muted">Your registered company legal entity, i.e. PT XYZ Ltd.</small>
                                 </div>
                             </div> 
@@ -108,8 +108,10 @@
                                     <label class="control-label" for="category">Category <span class="required">*</span></label>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <select class="form-control-vendor input-lg" name="businesscategory" onblur="checkexcategory(this.value);" id="businesscategory">
-                                    
+                                    <select class="form-control-vendor input-lg" name="businesscategory" onblur="checkexcategory(this.value);" id="businesscategory" disabled="true">
+                                        
+                                            <option value="">{{ $datavendor->nama_kategori}}</option> 
+                                        
                                     </select>
                                 <span id="cekcategorynameempty"></span>
                                 </div>

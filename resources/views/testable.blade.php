@@ -1,1 +1,1 @@
-<? vardump($viewtablepaket)?>
+<? vardump($post)?>

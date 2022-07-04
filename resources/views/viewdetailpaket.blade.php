@@ -10,7 +10,7 @@
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
-                            <div class="col-sm-4"><h2><b>Detail</b> Paket Vendor</h2></div>
+                            <div class="col-sm-4"><h2><b>Detail</b> Paket Vendor {{ $viewtabledetail[0]->nama_paket}}</h2></div>
                             <div class="col-sm-4">
                                 <a href="{{ url('/detailpaket') }}" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Item</span></a>
                             </div>

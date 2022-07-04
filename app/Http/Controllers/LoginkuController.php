@@ -19,6 +19,7 @@ class LoginkuController extends Controller
         $post=DB::table('users')->where('email',$request->email)->first();
         if ($post!=null && Hash::check($request->password,$post->password))
         {
+            session(['id' => $post->id]);
             session(['email' => $post->email]);
             session(['namauser' => $post->name]);
             return redirect('/');
@@ -94,7 +95,8 @@ class LoginkuController extends Controller
 
     public function editprofile()
     {
-        $post['datauser']=DB::table('users')->where('id',$id)->get();
+        $email = session('email');
+        $post['datauser']=DB::table('users')->where('id',$email)->get();
         return view('profileuseredit',$post);
     }
 

@@ -11,6 +11,7 @@ use App\Models\DetailPernikahan;
 use App\Models\DetailPaket;
 use App\Http\Controllers\TopsisController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class VendorkuController extends Controller
 {
@@ -19,12 +20,14 @@ class VendorkuController extends Controller
     {
 //        $post=User::where("email",$request->email)->get();
 //        echo "email $request->email ";
-$post=DB::table('vendors')->where('email',$request->email)->first();
+        $post=DB::table('vendors')->where('email',$request->email)->first();
         if ($post!=null && Hash::check($request->password,$post->password))
         {
+            session(['id' => $post->id]);
             session(['email' => $post->email]);
             session(['namauser' => $post->name]);
-            return redirect('/');
+            var_dump(session('id'));
+            return redirect('/testable');
         }else
             return redirect('/login')->with('statusku','Email atau password salah');
         
@@ -112,7 +115,11 @@ $post=DB::table('vendors')->where('email',$request->email)->first();
 
     public function viewpaket()
     {
-        $post['viewtablepaket'] = DB::table('paket_vendor')->get();
+        $post['viewtablepaket'] = DB::table('paket_vendor')
+        ->join('vendors','paket_vendor.vendor_id','=','vendors.id_vendor')
+        ->select('paket_vendor.*','vendors.nama_vendor')
+        ->where('paket_vendor.vendor_id','15')
+        ->get();
     
         return view('viewvendor2', $post);
         
@@ -120,7 +127,40 @@ $post=DB::table('vendors')->where('email',$request->email)->first();
 
     public function viewdetail()
     {
-        $post['viewtabledetail'] = DB::table('detail_paket')->get();
+        $post['viewtabledetail'] = DB::table('detail_paket')
+        ->join('paket_vendor','detail_paket.paket_vendor_id','=','paket_vendor.id_paket_vendor')
+        ->select('detail_paket.*','paket_vendor.nama_paket')
+        ->where('detail_paket.paket_vendor_id','5')
+        ->get();
+        
         return view('viewdetailpaket',$post);
+    }
+
+    public function editvendorku(Request $request)
+    {
+        $id = session('id');
+        echo "cek email ".$id;
+        $post['datavendor']=DB::table('vendors')
+        ->join('users','vendors.user_id','=','users.id')
+        ->join('kategori_vendor','vendors.kat_vendor_id','=','kategori_vendor.id_kat_vendor')
+        ->select('vendors.*','kategori_vendor.nama_kategori')
+        ->where('vendors.user_id',$id)
+        ->first();
+        
+        var_dump($post);
+        
+        return view('editvendor',$post);
+    }
+
+    public function tes()
+    {
+        $email = session('email');
+        echo "cek id " .$email;
+        $post['datauser']=DB::table('users')
+        ->select('users.id')
+        ->where('users.email',$email)
+        ->get();
+        var_dump($post);
+        return view('testable',$post);
     }
 }

@@ -36,6 +36,9 @@ Route::get('/profileuseredit',[LoginkuController::class,'editprofile'])->name("p
 Route::get('/registervendor',[VendorkuController::class,'lihatkategori'])->name("vendorkategori");
 Route::get('/viewvendor2',[VendorkuController::class,'viewpaket'])->name("viewtablepaket");
 Route::get('/viewdetailpaket',[VendorkuController::class,'viewdetail'])->name("viewtabledetail");
+Route::get('/editvendor',[VendorkuController::class,'editvendorku'])->name("editvendorku");
+Route::get('/testable',[VendorkuController::class,'ceklogin'])->name("testable");
+
 
 Route::post('/registerpaketvendor',[VendorkuController::class,'savepaketvendor']);
 Route::post('/detailpaketvendor',[VendorkuController::class,'savedetailpaketvendor']);
@@ -46,9 +49,6 @@ Route::get('/register',function(){
 })->name('register');
 
 
-Route::get('/editvendor',function(){
-    return view('editvendor');
-})->name('editvendor');
 
 Route::get('/rekomendasi',function(){
     return view('rekomendasi');
